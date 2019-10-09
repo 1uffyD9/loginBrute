@@ -82,25 +82,25 @@ class LoginBrute:
         if userList and passList and userList == passList:
             print (self.debug + "Reading wordlist...",end='')
             try:
-                userList = passList = open(userList, 'rb')
+                userList = passList = open(userList, 'rb').readlines()
             except IOError as e:
                 sys.exit(self.error + str(e).split("] ")[1])
 
         elif userList and passList and userList != passList:
             print (self.debug + "Reading wordlist...",end='')
             try:
-                userList = open(userList, 'rb')
+                userList = open(userList, 'rb').readlines()
             except IOError as e:
                 sys.exit(self.error + 'User list: ' + str(e).split("] ")[1])
             try:
-                passList = open(passList, 'rb')
+                passList = open(passList, 'rb').readlines()
             except IOError as e:
                 sys.exit(self.error + 'Pass list: ' + str(e).split("] ")[1])
 
         elif userList and not passList and password:
             print (self.debug + "Reading wordlist...",end='')
             try:
-                userList = open(userList, 'rb')
+                userList = open(userList, 'rb').readlines()
             except IOError as e:
                 sys.exit(self.error + 'User list: ' + str(e).split("] ")[1])
 
@@ -108,14 +108,14 @@ class LoginBrute:
             password = "password"
             print (self.debug + "Reading wordlist...",end='')
             try:
-                userList = open(userList, 'rb')
+                userList = open(userList, 'rb').readlines()
             except IOError as e:
                 sys.exit(self.error + 'User list: ' + str(e).split("] ")[1])
 
         elif not userList and passList and user:
             print (self.debug + "Reading wordlist...",end='')
             try:
-                passList = open(passList, 'rb')
+                passList = open(passList, 'rb').readlines()
             except IOError as e:
                 sys.exit(self.error + 'Pass list: ' + str(e).split("] ")[1])
 
@@ -123,7 +123,7 @@ class LoginBrute:
             user = "admin"
             print (self.debug + "Reading wordlist...",end='')
             try:
-                passList = open(passList, 'rb')
+                passList = open(passList, 'rb').readlines()
             except IOError as e:
                 sys.exit(self.error + 'Pass list: ' + str(e).split("] ")[1])
 
@@ -145,8 +145,8 @@ class LoginBrute:
 ######################################################
         '''.format(
                 self.detail, url,                                           
-                self.detail, user if not userList else userList.name,       
-                self.detail, password if not passList else passList.name,   
+                self.detail, user if not userList else args.userList,       
+                self.detail, password if not passList else args.userList,   
                 self.detail, token,                                         
                 self.detail, method.upper()                                 
                 )
@@ -184,9 +184,10 @@ class LoginBrute:
             page = request.get(url, headers=headers)
             html_content = page.text
             soup = BeautifulSoup(html_content, "lxml")
-            for element in soup.findAll('input'):
-                if element.attrs['name'] == token:
-                    csrf_token = element.get("value")
+            if token:
+                for element in soup.findAll('input'):
+                    if element.attrs['name'] == token:
+                        csrf_token = element.get("value")
         except requests.exceptions.RequestException as e:
             sys.exit(self.error + "Something going wrong with the request. Please check the url and the connectivity")
 
