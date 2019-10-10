@@ -146,7 +146,7 @@ class LoginBrute:
         '''.format(
                 self.detail, url,                                           
                 self.detail, user if not userList else args.userList,       
-                self.detail, password if not passList else args.userList,   
+                self.detail, password if not passList else args.passList,   
                 self.detail, token,                                         
                 self.detail, method.upper()                                 
                 )
@@ -239,7 +239,7 @@ class LoginBrute:
         elif method == "get":
             login_response = request.get(url=url, headers=headers, params=login_info)
             response_content = BeautifulSoup(login_response.text, "lxml")
-
+            
             if login_success_msg and not login_fail_msg:
                 if login_success_msg in login_response.text:
                     sys.exit(self.success + "Credentails found: '{}{}{}':'{}{}{}'".format(self.green, username, self.default, self.green, password, self.default))
