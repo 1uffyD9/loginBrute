@@ -1,5 +1,5 @@
 # loginBrute
-Python3 script to Bruteforce on login page where having csrf token validation
+Python3 script to Bruteforce on login page where having csrf token validation. Any suggestions, feedback, Pull requests and comments are welcome!
 
 ## Installation
 ```
