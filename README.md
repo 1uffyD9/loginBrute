@@ -8,6 +8,7 @@ Python3 script to Bruteforce on login page where having csrf token validation. A
 # pip3 install -r requirements.txt
 # chmod +x loginBrute.py
 # ln -sf `pwd`/loginBrute.py /usr/local/bin/loginBrute
+# loginBrute -h
 ```
 
 ## Syntax
