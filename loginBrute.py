@@ -58,7 +58,7 @@ class LoginBrute:
 
     def get_args(self,):
         parser = argparse.ArgumentParser(description='loginBrute will bruteforce on logins where csrf token is validated for each requests.')
-        parser.add_argument('-t', '--token', type=str, help='specify the csrf token/tokens validated by the web server.')
+        parser.add_argument('-t', '--token', type=str, help='specify the csrf token name(s) validated by the web server.')
         parser.add_argument('-U', '--user', type=str, help='specify the user name for the login')
         parser.add_argument('-u', '--userList', type=str, help='specify the wordlist for the esername')
         parser.add_argument('-P', '--password', type=str, help='specify the password for the login')
