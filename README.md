@@ -13,7 +13,7 @@ Python3 script to Bruteforce on login page where having csrf token validation. A
 
 ## Syntax
 ```
-# loginBrute -t token -m post -d 'username=$U&password=$P&submitLogin=submit::incorrect.' -l http://localhost/index.php -p /usr/share/wordlists/rockyou.txt -U admin
+# loginBrute -t token_name -m post -d 'username=$U&password=$P&submitLogin=submit::incorrect.' -l http://localhost/index.php -p /usr/share/wordlists/rockyou.txt -U admin
 ```
 
 ### Screenshot
